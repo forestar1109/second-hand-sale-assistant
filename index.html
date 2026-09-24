@@ -52,7 +52,7 @@
       <div class="flex items-center space-x-2 text-xs">
         <span class="text-indigo-200 hidden sm:inline"><i class="fa-solid fa-bolt text-yellow-400 mr-1"></i> Quick Fill Example:</span>
         <button onclick="loadPreset('iphone')" class="bg-indigo-800 hover:bg-indigo-700 text-indigo-100 px-2.5 py-1.5 rounded-lg border border-indigo-700 transition">iPhone 13</button>
-        <button onclick="loadPreset('sofa')" class="bg-indigo-800 hover:bg-indigo-700 text-indigo-100 px-2.5 py-1.5 rounded-lg border border-indigo-700 transition">Leather Sofa</button>
+        <button onclick="loadPreset('poang')" class="bg-indigo-800 hover:bg-indigo-700 text-indigo-100 px-2.5 py-1.5 rounded-lg border border-indigo-700 transition">IKEA Poäng</button>
         <button onclick="loadPreset('camera')" class="bg-indigo-800 hover:bg-indigo-700 text-indigo-100 px-2.5 py-1.5 rounded-lg border border-indigo-700 transition">Sony A7 III</button>
         <button onclick="loadPreset('macbook')" class="bg-indigo-800 hover:bg-indigo-700 text-indigo-100 px-2.5 py-1.5 rounded-lg border border-indigo-700 transition">MacBook Pro</button>
       </div>
@@ -106,25 +106,25 @@
         <!-- Brand / Model -->
         <div>
           <label class="block text-xs font-medium text-slate-700 mb-1">Brand / Model <span class="text-rose-500">*</span></label>
-          <input type="text" id="fieldBrandModel" placeholder="e.g. MacBook Air M1 2020" value="MacBook Air M1 2020" class="w-full rounded-lg border-slate-300 border px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 bg-slate-50/50">
+          <input type="text" id="fieldBrandModel" placeholder="e.g. MacBook Pro 13-inch M1 2020" value="MacBook Pro 13-inch M1 2020 16GB 512GB" class="w-full rounded-lg border-slate-300 border px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 bg-slate-50/50">
         </div>
 
         <!-- Age -->
         <div>
           <label class="block text-xs font-medium text-slate-700 mb-1">Age</label>
-          <input type="text" id="fieldAge" placeholder="e.g. 3 years" value="3 years" class="w-full rounded-lg border-slate-300 border px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 bg-slate-50/50">
+          <input type="text" id="fieldAge" placeholder="e.g. 3 years" value="5 years" class="w-full rounded-lg border-slate-300 border px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 bg-slate-50/50">
         </div>
 
         <!-- Disclosed Defects -->
         <div class="sm:col-span-2">
           <label class="block text-xs font-medium text-slate-700 mb-1">Disclosed Defects <span class="text-slate-400 font-normal">(if any)</span></label>
-          <input type="text" id="fieldDefects" placeholder="e.g. Small dent on bottom left corner, battery health 85%" value="Small dent on lower-left corner, battery health 85%" class="w-full rounded-lg border-slate-300 border px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 bg-slate-50/50">
+          <input type="text" id="fieldDefects" placeholder="e.g. Small dent on bottom left corner, battery health 85%" value="Minor surface marks, battery health 85%" class="w-full rounded-lg border-slate-300 border px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 bg-slate-50/50">
         </div>
 
         <!-- Original Purchase Price -->
         <div>
           <label class="block text-xs font-medium text-slate-700 mb-1">Original Purchase Price</label>
-          <input type="text" id="fieldPurchasePrice" placeholder="e.g. $799" value="$799" class="w-full rounded-lg border-slate-300 border px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 bg-slate-50/50">
+          <input type="text" id="fieldPurchasePrice" placeholder="e.g. SGD 1,799" value="SGD 1,799" class="w-full rounded-lg border-slate-300 border px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 bg-slate-50/50">
         </div>
 
         <!-- Accessories -->
@@ -184,19 +184,19 @@
             </div>
 
             <p class="text-xs text-slate-500 mb-3">
-              Curated resale records matched by category, product type and condition (rule-based):
+              Verified marketplace asking-price listings matched by exact product family, specifications, condition and bundle type:
             </p>
 
             <div id="matchedRefsContainer" class="space-y-2.5">
               <div class="text-center py-8 text-slate-400 text-xs border border-dashed border-slate-200 rounded-lg">
-                Click <strong>"Estimate Price"</strong> to retrieve relevant reference transactions.
+                Click <strong>"Estimate Price"</strong> to retrieve comparable marketplace listings.
               </div>
             </div>
 
             <!-- Thin evidence note -->
             <div id="thinEvidenceNote" class="hidden mt-3 p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-xs flex items-start space-x-2">
               <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5"></i>
-              <span><strong>Thin evidence:</strong> fewer than two comparable records of this product type. Any price shown is provisional.</span>
+              <span><strong>Insufficient evidence:</strong> fewer than two strongly comparable listings were found. The assistant will not present an unsupported price range.</span>
             </div>
           </div>
         </div>
@@ -234,17 +234,11 @@
               </div>
 
               <!-- Price Cards Grid -->
-              <div id="priceValuationBox" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div id="priceValuationBox" class="grid grid-cols-1 gap-3">
                 <div class="bg-gradient-to-br from-indigo-50 to-slate-50 border border-indigo-100 p-3.5 rounded-xl">
-                  <span class="text-xs font-semibold text-indigo-900 uppercase tracking-wider block mb-1">Suggested Asking Price</span>
+                  <span class="text-xs font-semibold text-indigo-900 uppercase tracking-wider block mb-1">Suggested Asking-Price Range</span>
                   <div class="text-xl font-bold text-indigo-700" id="valAskingPrice">--</div>
-                  <span class="text-[11px] text-indigo-500">Listing price to start negotiation</span>
-                </div>
-
-                <div class="bg-gradient-to-br from-emerald-50 to-slate-50 border border-emerald-100 p-3.5 rounded-xl">
-                  <span class="text-xs font-semibold text-emerald-900 uppercase tracking-wider block mb-1">Expected Transaction Range</span>
-                  <div class="text-xl font-bold text-emerald-700" id="valTransactionPrice">--</div>
-                  <span class="text-[11px] text-emerald-500">Likely final sell price</span>
+                  <span class="text-[11px] text-indigo-500">Based only on observed marketplace asking prices in SGD; this is not a confirmed sale-price estimate.</span>
                 </div>
               </div>
 
@@ -414,55 +408,47 @@
     /* =========================================================================
        1. KNOWLEDGE BASE DATA (20 Records)
        ========================================================================= */
-        const PRODUCT_TYPE_RULES = [
-          ["laptop",     ["macbook", "laptop", "thinkpad", "ideapad", "xps", "notebook", "chromebook"]],
-          ["phone",      ["iphone", "galaxy s", "pixel", "oneplus", "phone"]],
-          ["headphones", ["headphone", "wh-1000", "quietcomfort", "airpods", "earbud"]],
-          ["camera",     ["alpha a7", "a7 iii", "camera", "eos", "fujifilm", "mirrorless", "dslr"]],
-          ["chair",      ["chair", "aeron", "poang", "markus"]],
-          ["sofa",       ["sofa", "couch", "kivik", "sven"]],
-          ["vacuum",     ["vacuum", "dyson", "navigator"]],
-          ["kitchen",    ["instant pot", "espresso", "coffee", "blender", "air fryer"]],
-          ["bike",       ["bike", "bicycle", "trek fx", "giant escape"]],
-          ["fitness",    ["dumbbell", "rower", "treadmill", "weights", "bowflex"]],
-          ["guitar",     ["guitar", "stratocaster", "telecaster", "fender", "squier"]],
-          ["piano",      ["piano", "yamaha p-", "keyboard", "fp-30"]],
-          ["roofbox",    ["roof box", "roofbox", "thule", "yakima"]],
-          ["jacket",     ["jacket", "sweater", "fleece", "patagonia", "parka"]],
-          ["grill",      ["grill", "weber"]],
-          ["books",      ["book", "box set", "harry potter"]],
-          ["tools",      ["drill", "dewalt", "makita", "tool"]]
+        const MODEL_RULES = [
+          ["iphone13-128", ["iphone 13 128", "iphone13 128"]],
+          ["macbookpro13-m1-2020", ["macbook pro 13", "macbook pro m1", "a2338"]],
+          ["sony-wh1000xm4", ["wh-1000xm4", "wh1000xm4"]],
+          ["ikea-poang", ["ikea poang", "ikea poäng", "poang armchair", "poäng armchair"]],
+          ["sony-a7iii", ["sony a7 iii", "sony a7iii", "alpha a7 iii", "alpha a7iii"]]
         ];
-        function inferProductType(brandModel) {
+        function inferModelKey(brandModel) {
           const s = (brandModel || "").toLowerCase();
           if (!s.trim()) return null;
-          for (const [type, keywords] of PRODUCT_TYPE_RULES) {
-            if (keywords.some(k => s.includes(k))) return type;
+          for (const [key, phrases] of MODEL_RULES) {
+            if (phrases.some(p => s.includes(p))) return key;
           }
           return null;
         }
 
         const KB = [
-            { id: "KB-001", category: "electronics", productType: "phone", brandModel: "Apple iPhone 13 128GB", conditionTier: "like-new", transactionPrice: 520, askingPrice: 560, details: "Battery 98%, no scratches, original box included", age: "10 months" },
-            { id: "KB-002", category: "electronics", productType: "phone", brandModel: "Apple iPhone 13 128GB", conditionTier: "good", transactionPrice: 450, askingPrice: 490, details: "Battery 86%, light micro-scratches on bezel", age: "1.8 years" },
-            { id: "KB-003", category: "electronics", productType: "phone", brandModel: "Apple iPhone 12 64GB", conditionTier: "fair", transactionPrice: 310, askingPrice: 350, details: "Deep scratch on back glass, battery 78%", age: "2.5 years" },
-            { id: "KB-004", category: "electronics", productType: "headphones", brandModel: "Sony WH-1000XM4", conditionTier: "good", transactionPrice: 180, askingPrice: 210, details: "Minor headband scuff, includes travel case", age: "1.2 years" },
-            { id: "KB-005", category: "electronics", productType: "laptop", brandModel: "MacBook Pro M1 13-inch 256GB", conditionTier: "like-new", transactionPrice: 790, askingPrice: 840, details: "Low cycle count (42), flawless finish", age: "1 year" },
-            { id: "KB-006", category: "furniture", productType: "chair", brandModel: "IKEA Poang Armchair", conditionTier: "good", transactionPrice: 45, askingPrice: 60, details: "Birch veneer, beige cushion, clean fabric", age: "2 years" },
-            { id: "KB-007", category: "furniture", productType: "sofa", brandModel: "West Elm Mid-Century Leather Sofa", conditionTier: "fair", transactionPrice: 420, askingPrice: 500, details: "Visible leather patina, slight tear on right armrest cushion", age: "4 years" },
-            { id: "KB-008", category: "furniture", productType: "chair", brandModel: "Herman Miller Aeron Chair Size B", conditionTier: "like-new", transactionPrice: 750, askingPrice: 820, details: "Fully loaded, PostureFit SL, pristine mesh", age: "8 months" },
-            { id: "KB-009", category: "appliances", productType: "vacuum", brandModel: "Dyson V11 Torque Drive", conditionTier: "good", transactionPrice: 280, askingPrice: 320, details: "Filter recently replaced, normal wand scuffs", age: "2 years" },
-            { id: "KB-010", category: "appliances", productType: "kitchen", brandModel: "Instant Pot Duo 7-in-1 6Qt", conditionTier: "like-new", transactionPrice: 40, askingPrice: 50, details: "Used twice, all accessories included in original packaging", age: "5 months" },
-            { id: "KB-011", category: "sporting goods", productType: "bike", brandModel: "Trek FX 2 Disc Hybrid Bike", conditionTier: "good", transactionPrice: 380, askingPrice: 430, details: "Tires in good condition, tuned shifting, light frame scratches", age: "1.5 years" },
-            { id: "KB-012", category: "sporting goods", productType: "fitness", brandModel: "Bowflex SelectTech 552 Dumbbells", conditionTier: "like-new", transactionPrice: 290, askingPrice: 330, details: "Dial smooth, base trays included", age: "6 months" },
-            { id: "KB-013", category: "musical instruments", productType: "guitar", brandModel: "Fender Player Stratocaster", conditionTier: "good", transactionPrice: 510, askingPrice: 570, details: "Sunburst finish, minor fret wear, gig bag included", age: "2 years" },
-            { id: "KB-014", category: "musical instruments", productType: "piano", brandModel: "Yamaha P-125 Digital Piano", conditionTier: "like-new", transactionPrice: 480, askingPrice: 530, details: "Includes sustain pedal, music stand, power adapter", age: "1 year" },
-            { id: "KB-015", category: "vehicles", productType: "roofbox", brandModel: "Thule Motion XT L Roof Box", conditionTier: "good", transactionPrice: 520, askingPrice: 600, details: "Both keys included, minor cosmetic scratches on top shell", age: "3 years" },
-            { id: "KB-016", category: "fashion", productType: "jacket", brandModel: "Patagonia Better Sweater Fleece Jacket", conditionTier: "good", transactionPrice: 55, askingPrice: 70, details: "Men's Large, navy blue, no stains or holes", age: "1 year" },
-            { id: "KB-017", category: "home & garden", productType: "grill", brandModel: "Weber Spirit II E-210 Gas Grill", conditionTier: "fair", transactionPrice: 160, askingPrice: 200, details: "Surface rust on grates, igniter works fine, cover included", age: "3.5 years" },
-            { id: "KB-018", category: "books/media", productType: "books", brandModel: "Harry Potter Hardcover Box Set (1-7)", conditionTier: "like-new", transactionPrice: 75, askingPrice: 90, details: "Unread condition, dust jackets crisp", age: "2 years" },
-            { id: "KB-019", category: "tools", productType: "tools", brandModel: "DeWalt 20V MAX Cordless Drill Kit", conditionTier: "good", transactionPrice: 85, askingPrice: 105, details: "2 batteries, charger, and contractor bag", age: "1.5 years" },
-            { id: "KB-020", category: "electronics", productType: "camera", brandModel: "Sony Alpha A7 III Body Only", conditionTier: "good", transactionPrice: 1100, askingPrice: 1220, details: "Shutter count 14,200, sensor clean, minor hotshoe wear", age: "2.5 years" }
+          { id:"KB-001", category:"electronics", productType:"phone", modelKey:"iphone13-128", brandModel:"Apple iPhone 13 128GB Pink", specs:"128GB", conditionTier:"like-new", askingPrice:420, currency:"SGD", details:"Phone and original box only; battery health not provided; Bukit Batok.", bundleType:"standard", sourcePlatform:"Facebook Marketplace", sourceUrl:"https://www.facebook.com/marketplace/item/1399949065569035/", collectedAt:"2026-09-01" },
+          { id:"KB-002", category:"electronics", productType:"phone", modelKey:"iphone13-128", brandModel:"Apple iPhone 13 128GB Blue", specs:"128GB; battery health 95%", conditionTier:"like-new", askingPrice:400, currency:"SGD", details:"Original box, charger, earphones, tempered glass and case included.", bundleType:"standard", sourcePlatform:"Facebook Marketplace", sourceUrl:"https://www.facebook.com/marketplace/item/2061088161440078/", collectedAt:"2026-09-01" },
+          { id:"KB-003", category:"electronics", productType:"phone", modelKey:"iphone13-128", brandModel:"Apple iPhone 13 128GB Red", specs:"128GB; battery health 90%", conditionTier:"like-new", askingPrice:400, currency:"SGD", details:"Original box, charger, earphones, tempered glass and case included.", bundleType:"standard", sourcePlatform:"Facebook Marketplace", sourceUrl:"https://www.facebook.com/marketplace/item/1055464053921275/", collectedAt:"2026-09-01" },
+          { id:"KB-004", category:"electronics", productType:"phone", modelKey:"iphone13-128", brandModel:"Apple iPhone 13 128GB Black", specs:"128GB; battery health 100%", conditionTier:"like-new", askingPrice:400, currency:"SGD", details:"Box, charger, earphones, screen protector and case included.", bundleType:"standard", sourcePlatform:"Facebook Marketplace", sourceUrl:"https://www.facebook.com/marketplace/item/1038264402142468/", collectedAt:"2026-09-01" },
+
+          { id:"KB-005", category:"electronics", productType:"laptop", modelKey:"macbookpro13-m1-2020", brandModel:"Apple MacBook Pro 13-inch M1 2020 A2338", specs:"8GB RAM; 512GB SSD; battery health 85%", conditionTier:"good", askingPrice:800, currency:"SGD", details:"No dents; original power adapter included.", bundleType:"standard", sourcePlatform:"Facebook Marketplace", sourceUrl:"https://www.facebook.com/marketplace/item/2056767814984555/", collectedAt:"2026-09-01" },
+          { id:"KB-006", category:"electronics", productType:"laptop", modelKey:"macbookpro13-m1-2020", brandModel:"Apple MacBook Pro 13-inch M1 2020 Touch Bar", specs:"16GB RAM; battery health 82%; storage not confirmed", conditionTier:"good", askingPrice:800, currency:"SGD", details:"Touch Bar model; verify storage and included accessories with seller.", bundleType:"standard", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/apple-macbook-pro-13-inch-m1-2020-with-touch-bar-1463082516/", collectedAt:"2026-09-01" },
+          { id:"KB-007", category:"electronics", productType:"laptop", modelKey:"macbookpro13-m1-2020", brandModel:"Apple MacBook Pro 13-inch M1 2020 Space Grey", specs:"16GB RAM; 512GB SSD; battery health 85%", conditionTier:"good", askingPrice:880, currency:"SGD", details:"Space Grey configuration.", bundleType:"standard", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/apple-macbook-pro-13-inch-m1-16gb-512gb-space-grey-1462850041/", collectedAt:"2026-09-01" },
+          { id:"KB-008", category:"electronics", productType:"laptop", modelKey:"macbookpro13-m1-2020", brandModel:"Apple MacBook Pro 13-inch M1 2020 Space Grey", specs:"16GB RAM; 512GB SSD", conditionTier:"good", askingPrice:850, currency:"SGD", details:"Battery condition and included accessories were not shown in the captured listing.", bundleType:"standard", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/apple-macbook-pro-13-inch-m1-2020-16gb-ram-512gb-ssd-1461228866/", collectedAt:"2026-09-01" },
+
+          { id:"KB-009", category:"electronics", productType:"headphones", modelKey:"sony-wh1000xm4", brandModel:"Sony WH-1000XM4", specs:"Wireless noise-cancelling headphones", conditionTier:"like-new", askingPrice:180, currency:"SGD", details:"Under warranty; original box and carrying case included.", bundleType:"standard", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/sony-wh-1000xm4-wireless-noise-cancelling-headphones-1457147506/", collectedAt:"2026-09-01" },
+          { id:"KB-010", category:"electronics", productType:"headphones", modelKey:"sony-wh1000xm4", brandModel:"Sony WH-1000XM4", specs:"Wireless noise-cancelling headphones", conditionTier:"good", askingPrice:180, currency:"SGD", details:"Original box, charger, carrying case and headphone stand included.", bundleType:"standard", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/sony-headphones-wh-1000xm4-1463023355/", collectedAt:"2026-09-01" },
+          { id:"KB-011", category:"electronics", productType:"headphones", modelKey:"sony-wh1000xm4", brandModel:"Sony WH-1000XM4 Black", specs:"Wireless noise-cancelling headphones", conditionTier:"like-new", askingPrice:150, currency:"SGD", details:"Barely used; original carrying case and 3.5mm cable included.", bundleType:"standard", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/sony-wh-1000xm4-noise-cancelling-headphones-1463516937/", collectedAt:"2026-09-01" },
+          { id:"KB-012", category:"electronics", productType:"headphones", modelKey:"sony-wh1000xm4", brandModel:"Sony WH-1000XM4", specs:"Wireless noise-cancelling headphones", conditionTier:"good", askingPrice:90, currency:"SGD", details:"Original carrying case included; unusually low asking-price outlier.", bundleType:"standard", isOutlier:true, sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/sony-wh-1000xm4-noise-cancelling-headphones-1463640316/", collectedAt:"2026-09-01" },
+
+          { id:"KB-013", category:"furniture", productType:"chair", modelKey:"ikea-poang", brandModel:"IKEA Poäng Armchair with Ottoman - Brown Leather", specs:"Brown leather; matching ottoman", conditionTier:"good", askingPrice:60, currency:"SGD", details:"Seller states very good condition and rarely used; ottoman bundle affects comparability.", bundleType:"ottoman-bundle", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/ikea-poäng-armchair-with-ottoman-brown-leather-1463748762/", collectedAt:"2026-09-01" },
+          { id:"KB-014", category:"furniture", productType:"chair", modelKey:"ikea-poang", brandModel:"IKEA Poäng Armchair Cream White", specs:"Cream-white cushion; light wood frame", conditionTier:"good", askingPrice:55, currency:"SGD", details:"Condition provisionally recorded as good because full condition details were not visible.", bundleType:"chair-only", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/ikea-poäng-armchair-cream-white-1463655032/", collectedAt:"2026-09-01" },
+          { id:"KB-015", category:"furniture", productType:"chair", modelKey:"ikea-poang", brandModel:"IKEA Poäng Armchair Light Wood / Grey Cushion", specs:"Light wood frame; grey cushion", conditionTier:"good", askingPrice:55, currency:"SGD", details:"Seller states no defects or scratches.", bundleType:"chair-only", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/ikea-poäng-armchair-light-wood-frame-grey-cushion-1462779909/", collectedAt:"2026-09-01" },
+          { id:"KB-016", category:"furniture", productType:"chair", modelKey:"ikea-poang", brandModel:"IKEA Poäng Armchair Dark Grey", specs:"Dark-grey fabric seat/backrest; wooden frame", conditionTier:"like-new", askingPrice:45, currency:"SGD", details:"Chair only; seller labelled it like-new.", bundleType:"chair-only", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/ikea-poäng-armchair-dark-grey-1416465818/", collectedAt:"2026-09-01" },
+
+          { id:"KB-017", category:"electronics", productType:"camera", modelKey:"sony-a7iii", brandModel:"Sony Alpha A7 III + Tamron 28-75mm Lens", specs:"Full-frame mirrorless; Tamron 28-75mm lens", conditionTier:"good", askingPrice:1800, currency:"SGD", details:"Camera-and-lens bundle; not directly comparable with a body-only listing.", bundleType:"lens-kit", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/sony-alpha-a7-iii-mirrorless-digital-camera-body-tamron-28-75-lens-1461398079/", collectedAt:"2026-09-01" },
+          { id:"KB-018", category:"electronics", productType:"camera", modelKey:"sony-a7iii", brandModel:"Sony Alpha A7 III Body Only", specs:"Shutter count 4,080", conditionTier:"like-new", askingPrice:1500, currency:"SGD", details:"Original box and accessories, charger and two batteries; no SD card.", bundleType:"body-only", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/sony-alpha-a7-iii-mirrorless-camera-body-1459686531/", collectedAt:"2026-09-01" },
+          { id:"KB-019", category:"electronics", productType:"camera", modelKey:"sony-a7iii", brandModel:"Sony A7 III + Sony 28-70mm Lens Full Set", specs:"Full-frame mirrorless; Sony 28-70mm kit lens", conditionTier:"like-new", askingPrice:1500, currency:"SGD", details:"Seller labelled it new; camera-and-lens bundle affects comparability.", bundleType:"lens-kit", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/sony-a7-iii-full-frame-mirrorless-camera-28-70mm-lens-full-set-1459240695/", collectedAt:"2026-09-01" },
+          { id:"KB-020", category:"electronics", productType:"camera", modelKey:"sony-a7iii", brandModel:"Sony Alpha A7 III Body Only", specs:"Two NP-FZ100 batteries; SanDisk SD card", conditionTier:"good", askingPrice:1350, currency:"SGD", details:"No camera bag unless purchased with a separate lens.", bundleType:"body-only", sourcePlatform:"Carousell", sourceUrl:"https://www.carousell.sg/p/sony-alpha-a7-iii-mirrorless-camera-body-1458139953/", collectedAt:"2026-09-01" }
         ];
     const KNOWLEDGE_BASE = KB;
 
@@ -491,83 +477,74 @@
       return adj;
     }
 
-        function executeRetrieval(category, conditionTier, brandModel) {
+        function inferRequestedBundle(modelKey, brandModel, accessories) {
+          const text = `${brandModel || ""} ${accessories || ""}`.toLowerCase();
+          if (modelKey === "sony-a7iii") {
+            return /(lens|28-70|28-75|kit)/.test(text) ? "lens-kit" : "body-only";
+          }
+          if (modelKey === "ikea-poang") {
+            return /(ottoman|footstool)/.test(text) ? "ottoman-bundle" : "chair-only";
+          }
+          return "standard";
+        }
+
+        function executeRetrieval(category, conditionTier, brandModel, accessories) {
             const normCat = normalizeStr(category);
             const normCond = (conditionTier || "").toLowerCase();
-            const tiers = ["like-new", "good", "fair", "poor"];
-            const condIdx = tiers.indexOf(normCond);
-            const adjacentTiers = [];
-            if (condIdx > 0) adjacentTiers.push(tiers[condIdx - 1]);
-            if (condIdx >= 0 && condIdx < tiers.length - 1) adjacentTiers.push(tiers[condIdx + 1]);
+            const modelKey = inferModelKey(brandModel);
+            const requestedBundle = inferRequestedBundle(modelKey, brandModel, accessories);
+            const adjacentTiers = getAdjacentConditions(normCond);
 
-            // 1. Same category
-            let pool = KNOWLEDGE_BASE.filter(item => {
-                const c = normalizeStr(item.category);
-                return c === normCat || c.includes(normCat) || normCat.includes(c);
-            });
+            // Exact product family is mandatory. This prevents cross-product
+            // errors such as iPhone vs headphones, MacBook vs iPhone, or Poäng vs Aeron.
+            let pool = modelKey ? KNOWLEDGE_BASE.filter(item =>
+              item.modelKey === modelKey && normalizeStr(item.category) === normCat
+            ) : [];
 
-            let thinEvidence = false;
+            // Bundle type is a material price factor for cameras and furniture.
+            const bundleMatches = pool.filter(item => item.bundleType === requestedBundle);
+            if (bundleMatches.length) pool = bundleMatches;
 
-            // 2. Narrow to the same product type when we can identify one.
-            const wantedType = inferProductType(brandModel);
-            if (!wantedType) {
-                // We can't tell what this product is, so we can't vouch for the
-                // comparability of anything we retrieve. Say so rather than
-                // silently pricing it off whatever shares its category.
-                pool = [];
-                thinEvidence = true;
-            }
-            if (wantedType) {
-                const typeMatches = pool.filter(item => item.productType === wantedType);
-                if (typeMatches.length >= 2) {
-                    pool = typeMatches;
-                } else if (typeMatches.length === 1) {
-                    pool = typeMatches;
-                    thinEvidence = true;
-                } else {
-                    // Nothing of this product type at all - comparing against other
-                    // product types would be meaningless, so flag it rather than pretend.
-                    pool = [];
-                    thinEvidence = true;
-                }
-            }
-
-            // 3. Condition: exact, then widen to adjacent tiers.
-            const exact = pool.filter(item => item.conditionTier.toLowerCase() === normCond);
-            let retrieved;
-            if (exact.length >= 2) {
-                retrieved = exact;
-            } else {
-                const widened = pool.filter(item => {
-                    const c = item.conditionTier.toLowerCase();
-                    return c === normCond || adjacentTiers.includes(c);
-                });
-                if (widened.length >= 2) {
-                    retrieved = widened;
-                } else {
-                    retrieved = pool;
-                    if (pool.length < 2) thinEvidence = true;
-                }
-            }
-
-            // 4. Rank: exact condition first, adjacent next.
-            const rank = (item) => {
-                const c = item.conditionTier.toLowerCase();
-                if (c === normCond) return 0;
-                if (adjacentTiers.includes(c)) return 1;
-                return 2;
+            const specText = normalizeStr(`${brandModel || ""} ${accessories || ""}`);
+            const rank = item => {
+              let score = 0;
+              if (item.conditionTier !== normCond) score += adjacentTiers.includes(item.conditionTier) ? 2 : 5;
+              if (item.bundleType !== requestedBundle) score += 10;
+              if (item.isOutlier) score += 8;
+              for (const token of ["128gb", "512gb", "16gb", "8gb", "28-70", "28-75"]) {
+                if (specText.includes(normalizeStr(token)) && !normalizeStr(`${item.brandModel} ${item.specs}`).includes(normalizeStr(token))) score += 3;
+              }
+              return score;
             };
-            retrieved = [...retrieved].sort((a, b) => rank(a) - rank(b));
+            pool = [...pool].sort((a, b) => rank(a) - rank(b) || a.askingPrice - b.askingPrice);
 
-            return { records: retrieved.slice(0, 3), thinEvidence, productType: wantedType };
+            let records = pool.slice(0, 3);
+            // Keep the top-three display compact, but preserve observed price
+            // variation when equally relevant listings otherwise all have one price.
+            if (new Set(records.map(r => r.askingPrice)).size < 2) {
+              const alternative = pool.find(r => !records.some(x => x.askingPrice === r.askingPrice));
+              if (alternative && records.length) records[records.length - 1] = alternative;
+            }
+            return {
+              records,
+              thinEvidence: records.length < 2,
+              productType: records[0]?.productType || null,
+              modelKey,
+              requestedBundle
+            };
         }
 
     function runRetrieval() {
-      const r = executeRetrieval(document.getElementById("fieldCategory").value, document.getElementById("fieldCondition").value, document.getElementById("fieldBrandModel").value);
+      const r = executeRetrieval(
+        document.getElementById("fieldCategory").value,
+        document.getElementById("fieldCondition").value,
+        document.getElementById("fieldBrandModel").value,
+        document.getElementById("fieldAccessories").value
+      );
       currentRetrievedRefs = r.records;
       thinEvidenceFlag = r.thinEvidence;
       renderMatchedReferences(r.records, r.thinEvidence);
-      return { top3: r.records, thinEvidence: r.thinEvidence, productType: r.productType };
+      return { top3: r.records, thinEvidence: r.thinEvidence, productType: r.productType, modelKey: r.modelKey, requestedBundle: r.requestedBundle };
     }
 
     /* Shared user goal + facts: identical to the evaluated full system (variant C). */
@@ -614,15 +591,18 @@
                 <div class="text-slate-500 text-[11px] space-x-2">
                   <span>Cond: <strong class="text-slate-700">${r.conditionTier}</strong></span>
                   <span>&bull;</span>
-                  <span>Asking: $${r.askingPrice}</span>
-                  <span>&bull;</span>
-                  <span class="text-emerald-700 font-semibold">Transacted: $${r.transactionPrice}</span>
+                  <span class="text-indigo-700 font-semibold">Asking: SGD ${r.askingPrice}</span>
                 </div>
+                <div class="text-slate-500 text-[10px] mt-1">${r.specs}</div>
                 <div class="text-slate-400 text-[10px] mt-1">${r.details}</div>
+                <div class="text-[10px] mt-2 flex flex-wrap gap-x-2 gap-y-1">
+                  <a class="text-indigo-600 hover:underline" href="${r.sourceUrl}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>${r.sourcePlatform}</a>
+                  <span class="text-slate-400">Collected ${r.collectedAt}</span>
+                </div>
               </div>
               <div class="text-right shrink-0">
-                <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-100 text-emerald-800">Sold</span>
-                <div class="text-[10px] text-slate-400 mt-1">${r.age}</div>
+                <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-medium bg-indigo-100 text-indigo-800">Listing</span>
+                <div class="text-[10px] text-slate-400 mt-1">${r.bundleType}</div>
               </div>
             </div>
           </div>
@@ -726,7 +706,7 @@
        ========================================================================= */
     async function handleEstimatePrice() {
       // 1. Run retrieval
-      const { top3, thinEvidence, productType } = runRetrieval();
+      const { top3, thinEvidence, productType, modelKey, requestedBundle } = runRetrieval();
       
       const category = document.getElementById("fieldCategory").value;
       const brandModel = document.getElementById("fieldBrandModel").value;
@@ -743,7 +723,7 @@
 
       // Format references for prompt
       const formattedRefs = top3.map(r => 
-        `[ID: ${r.id}] ${r.brandModel} (${r.conditionTier}) - Asking: $${r.askingPrice}, Transacted: $${r.transactionPrice}. Details: ${r.details}`
+        `[ID: ${r.id}] ${r.brandModel} (${r.conditionTier}; ${r.bundleType}) - Asking price: SGD ${r.askingPrice}. Specs: ${r.specs}. Details: ${r.details}. Source: ${r.sourcePlatform}; collected ${r.collectedAt}; URL: ${r.sourceUrl}`
       ).join("\n") || "No sufficiently comparable records were retrieved.";
 
       const systemPrompt = `You are a second-hand resale pricing assistant. Estimate a defensible price range grounded ONLY in the reference records provided. Do not invent prices, sources, or market data.
@@ -762,17 +742,20 @@ ${formattedRefs}
 
 EVIDENCE STATUS
 - Product type detected: ${productType || "unknown"}
+- Exact model family detected: ${modelKey || "unknown"}
+- Requested bundle type: ${requestedBundle || "unknown"}
 - Thin evidence: ${thinEvidence ? "TRUE" : "FALSE"}
 
 TASKS
 1. First decide which situation applies:
-   (a) SELLER INFO MISSING - the model, condition or another essential fact is unknown or ambiguous. Set sufficient_evidence=false, give no price (null ranges), and ask specific clarification questions about the missing facts only.
-   (b) THIN REFERENCE EVIDENCE - "Thin evidence: TRUE" but the seller facts are complete. Set sufficient_evidence=false. Do NOT ask the seller for details they already provided. You MAY give an indicative range built only from the supplied reference values (for example from the transacted price to the asking price), state clearly that it is provisional because it rests on too few references, and set confidence to "low".
-   (c) SUFFICIENT - at least two comparable references and complete seller facts. Give an asking price range and a transaction (sold) price range, clearly separated.
-2. Always give price ranges, never a single point value.
-3. Cite the reference ID(s) behind every number you give.
-4. Every price in the reference records and in your output is in US DOLLARS. Always return currency as exactly "USD" and never convert the figures to another currency.
-5. Always fill "next_step" with one concrete action the seller can take now to confirm or improve the price (for example "check 3 recent sold listings of the same model", or "confirm the condition detail that most affects this item's resale value"). Do not state facts about the seller's item that were not provided.`;
+   (a) SELLER INFO MISSING - the exact model, condition, key specification or bundle type is unknown or ambiguous. Set sufficient_evidence=false, set asking_price_range=null, and ask specific clarification questions only about missing facts.
+   (b) THIN REFERENCE EVIDENCE - fewer than two strongly comparable listings. Set sufficient_evidence=false, set asking_price_range=null, state that evidence is insufficient, and set confidence to "low". Never manufacture a range from one listing.
+   (c) SUFFICIENT - at least two strongly comparable listings and complete seller facts. Give one asking-price range using only the supplied asking prices.
+2. The range must satisfy low < high. Never output a reversed range or a one-point range.
+3. Cite the reference ID(s) behind every number. Do not cite a record with a materially different bundle as if it were equivalent.
+4. Every price is a Singapore-dollar marketplace asking price. Return currency exactly as "SGD". Do not infer or mention transaction prices, sold prices or discounts.
+5. Treat unusual low-price or high-price records as possible outliers and explain whether they were excluded.
+6. Always fill "next_step" with one concrete action, such as checking additional current asking-price listings of the same exact model and bundle. Do not claim that a listing sold and do not invent facts.`;
 
       const userPrompt = commonUserMessage("Pricing") + "\n\nPlease evaluate the valuation for this item based strictly on the reference records provided. Return strict JSON.";
 
@@ -790,32 +773,22 @@ TASKS
             },
             required: ["low", "high", "currency"]
           },
-          transaction_price_range: {
-            type: "OBJECT", nullable: true,
-            properties: {
-              low: { type: "NUMBER" },
-              high: { type: "NUMBER" },
-              currency: { type: "STRING" }
-            },
-            required: ["low", "high", "currency"]
-          },
           reasoning: { type: "ARRAY", items: { type: "STRING" } },
           confidence: { type: "STRING" },
           cited_reference_ids: { type: "ARRAY", items: { type: "STRING" } },
           next_step: { type: "STRING" }
         },
-        required: ["sufficient_evidence", "clarification_questions", "asking_price_range", "transaction_price_range", "reasoning", "confidence", "cited_reference_ids", "next_step"]
+        required: ["sufficient_evidence", "clarification_questions", "asking_price_range", "reasoning", "confidence", "cited_reference_ids", "next_step"]
       };
 
       try {
         const jsonText = await callGemini(userPrompt, systemPrompt, schema);
-        const result = JSON.parse(jsonText);
+        const result = normalizePriceResult(JSON.parse(jsonText), top3, thinEvidence);
         renderPriceEstimate(result);
         
         // Auto update practice asking price input if valid
         if (result.sufficient_evidence && result.asking_price_range && result.asking_price_range.high) {
-          const currency = "$";
-          document.getElementById("liveAskingPrice").value = `${currency}${result.asking_price_range.high}`;
+          document.getElementById("liveAskingPrice").value = `SGD ${result.asking_price_range.high}`;
         }
         showToast("Price valuation completed!", "success");
       } catch (err) {
@@ -828,6 +801,26 @@ TASKS
     }
 
     function escapeHtml(v) { return String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+    function normalizePriceResult(result, refs, thinEvidence) {
+      const validIds = new Set(refs.map(r => r.id));
+      result.cited_reference_ids = (result.cited_reference_ids || []).filter(id => validIds.has(id));
+      const range = result.asking_price_range;
+      const validRange = range && Number.isFinite(Number(range.low)) && Number.isFinite(Number(range.high)) && Number(range.low) < Number(range.high);
+
+      if (thinEvidence || !validRange) {
+        result.sufficient_evidence = false;
+        result.asking_price_range = null;
+        result.confidence = "low";
+        result.clarification_questions = result.clarification_questions || [];
+        if (!thinEvidence && !validRange) {
+          result.reasoning = [...(result.reasoning || []), "No valid range was shown because a price range must have a lower bound strictly below its upper bound."];
+        }
+      } else {
+        result.asking_price_range = { low: Number(range.low), high: Number(range.high), currency: "SGD" };
+      }
+      return result;
+    }
 
     function renderPriceEstimate(data) {
       document.getElementById("priceEmptyState").classList.add("hidden");
@@ -848,21 +841,18 @@ TASKS
         confidencePill.innerHTML = `<i class="fa-solid fa-circle-exclamation mr-1"></i> Low Confidence`;
       }
 
-      const fmt = r => (r && r.low != null) ? (r.low === r.high ? `$${r.low}` : `$${r.low} - $${r.high}`) : "--";
+      const fmt = r => (r && r.low != null && r.low < r.high) ? `SGD ${r.low} – ${r.high}` : "--";
       const hasRange = !!(data.asking_price_range && data.asking_price_range.low != null);
       const box = document.getElementById("insufficientEvidenceBox");
       if (!data.sufficient_evidence) {
         box.classList.remove("hidden");
-        document.getElementById("insufficientExplanation").innerText = hasRange
-          ? "Too few comparable records: the range below is provisional."
-          : "Not enough information for a reliable price yet.";
+        document.getElementById("insufficientExplanation").innerText = "Fewer than two strongly comparable listings, missing item details, or an invalid range prevented a reliable estimate.";
         document.getElementById("clarificationQuestions").innerHTML = (data.clarification_questions || []).map(q => `<li>${escapeHtml(q)}</li>`).join('');
       } else {
         box.classList.add("hidden");
       }
       document.getElementById("priceValuationBox").classList.toggle("hidden", !hasRange);
-      document.getElementById("valAskingPrice").innerText = fmt(data.asking_price_range) + (data.sufficient_evidence ? "" : " (provisional)");
-      document.getElementById("valTransactionPrice").innerText = fmt(data.transaction_price_range) + (data.sufficient_evidence ? "" : " (provisional)");
+      document.getElementById("valAskingPrice").innerText = fmt(data.asking_price_range);
       const ns = document.getElementById("valNextStep");
       ns.classList.toggle("hidden", !data.next_step);
       document.getElementById("valNextStepText").innerText = data.next_step || "";
@@ -873,9 +863,12 @@ TASKS
 
       // Render Cited Ref IDs
       const citedContainer = document.getElementById("valCitedRefs");
-      citedContainer.innerHTML = (data.cited_reference_ids || []).map(id => `
-        <span class="bg-indigo-100 text-indigo-800 font-medium px-2 py-0.5 rounded text-[10px]">${id}</span>
-      `).join('');
+      citedContainer.innerHTML = (data.cited_reference_ids || []).map(id => {
+        const ref = currentRetrievedRefs.find(r => r.id === id);
+        return ref
+          ? `<a href="${ref.sourceUrl}" target="_blank" rel="noopener noreferrer" class="bg-indigo-100 text-indigo-800 font-medium px-2 py-0.5 rounded text-[10px] hover:underline">${id}</a>`
+          : `<span class="bg-indigo-100 text-indigo-800 font-medium px-2 py-0.5 rounded text-[10px]">${id}</span>`;
+      }).join('');
     }
 
     /* =========================================================================
@@ -1047,7 +1040,7 @@ RULES
 3. Keep each suggested reply natural, honest, and under 45 words.
 4. Preserve disclosed defects and do not invent product features, competing offers, guarantees, or market evidence.
 5. Provide three complete options: firm, flexible, and polite decline.
-6. All prices are in US dollars. The seller reviews and sends the final message personally.`;
+6. All prices are in Singapore dollars (SGD). The seller reviews and sends the final message personally.`;
 
       const schema = {
         type: "OBJECT",
@@ -1120,43 +1113,43 @@ RULES
     }
 
     function loadPreset(type) {
-      // Presets mirror the eval harness exactly (same categories, conditions, defects, prices).
+      // Presets use product families represented in the verified 20-record KB.
       if (type === 'macbook') {
         document.getElementById("fieldCategory").value = "Electronics";
-        document.getElementById("fieldCondition").value = "like-new";
-        document.getElementById("fieldBrandModel").value = "MacBook Pro M1 13-inch";
-        document.getElementById("fieldAge").value = "1 year";
-        document.getElementById("fieldDefects").value = "None";
-        document.getElementById("fieldPurchasePrice").value = "$1299";
-        document.getElementById("fieldAccessories").value = "Original charger, sleeve";
-        document.getElementById("liveAskingPrice").value = "$840";
+        document.getElementById("fieldCondition").value = "good";
+        document.getElementById("fieldBrandModel").value = "MacBook Pro 13-inch M1 2020 16GB 512GB";
+        document.getElementById("fieldAge").value = "5 years";
+        document.getElementById("fieldDefects").value = "Minor surface marks, battery health 85%";
+        document.getElementById("fieldPurchasePrice").value = "SGD 1,799";
+        document.getElementById("fieldAccessories").value = "Original charger";
+        document.getElementById("liveAskingPrice").value = "SGD 850";
       } else if (type === 'iphone') {
         document.getElementById("fieldCategory").value = "Electronics";
-        document.getElementById("fieldCondition").value = "fair";
+        document.getElementById("fieldCondition").value = "like-new";
         document.getElementById("fieldBrandModel").value = "Apple iPhone 13 128GB";
-        document.getElementById("fieldAge").value = "3 years";
-        document.getElementById("fieldDefects").value = "Cracked rear glass, camera lens scratched";
-        document.getElementById("fieldPurchasePrice").value = "$799";
-        document.getElementById("fieldAccessories").value = "None";
-        document.getElementById("liveAskingPrice").value = "$350";
-      } else if (type === 'sofa') {
-        document.getElementById("fieldCategory").value = "Furniture";
-        document.getElementById("fieldCondition").value = "fair";
-        document.getElementById("fieldBrandModel").value = "West Elm Leather Sofa";
         document.getElementById("fieldAge").value = "4 years";
-        document.getElementById("fieldDefects").value = "Visible leather scratch, small tear on right cushion corner";
-        document.getElementById("fieldPurchasePrice").value = "$1400";
-        document.getElementById("fieldAccessories").value = "2 matching pillows";
-        document.getElementById("liveAskingPrice").value = "$500";
+        document.getElementById("fieldDefects").value = "Battery health 90%; no major scratches";
+        document.getElementById("fieldPurchasePrice").value = "SGD 1,299";
+        document.getElementById("fieldAccessories").value = "Original box, charger and case";
+        document.getElementById("liveAskingPrice").value = "SGD 410";
+      } else if (type === 'poang') {
+        document.getElementById("fieldCategory").value = "Furniture";
+        document.getElementById("fieldCondition").value = "good";
+        document.getElementById("fieldBrandModel").value = "IKEA Poäng Armchair";
+        document.getElementById("fieldAge").value = "2 years";
+        document.getElementById("fieldDefects").value = "No visible defects";
+        document.getElementById("fieldPurchasePrice").value = "SGD 149";
+        document.getElementById("fieldAccessories").value = "Chair only";
+        document.getElementById("liveAskingPrice").value = "SGD 55";
       } else if (type === 'camera') {
         document.getElementById("fieldCategory").value = "Electronics";
         document.getElementById("fieldCondition").value = "good";
         document.getElementById("fieldBrandModel").value = "Sony Alpha A7 III Body";
         document.getElementById("fieldAge").value = "2 years";
         document.getElementById("fieldDefects").value = "Hotshoe scratches";
-        document.getElementById("fieldPurchasePrice").value = "$1999";
+        document.getElementById("fieldPurchasePrice").value = "SGD 2,899";
         document.getElementById("fieldAccessories").value = "Original battery & charger";
-        document.getElementById("liveAskingPrice").value = "$1220";
+        document.getElementById("liveAskingPrice").value = "SGD 1,400";
       }
       showToast(`Loaded ${type} preset data!`, "info");
     }
